@@ -1,3 +1,17 @@
-hello!
+<h1>hello world!</h1>
+
+<hr/>
+
+<% if @service_down %>
+  <%= render "shared/service_down" %>
+<% else %>
+  <ul>
+    <% @posts.each do |post| %>
+      <li><%= post.title %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<p>&nbsp;</p>
 
 <%= link_to "New Post", new_post_path %>
