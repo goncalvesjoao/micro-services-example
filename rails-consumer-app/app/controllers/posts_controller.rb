@@ -20,8 +20,38 @@ class PostsController < ApplicationController
     if save_result
       redirect_to(posts_path)
     else
-      render "new", layout: layout_according_to(save_result)
+      set_flash_message(:save, save_result, true)
+      render "new"
     end
+  end
+
+  def edit
+    remote_call = Post.find(params[:id])
+
+    @post = remote_call.data
+
+    redirect_to(posts_path, error: 'Sorry, the server has returned an error!') if remote_call.error?
+  end
+
+  def update
+    @post = Post.new(params[:post])
+
+    save_result = @post.save
+
+    if save_result
+      redirect_to(posts_path)
+    else
+      set_flash_message(:save, save_result, true)
+      render "edit"
+    end
+  end
+
+  def destroy
+    @post = Post.new(id: params[:id])
+
+    set_flash_message(:destroy, @post.destroy)
+
+    redirect_to(posts_path)
   end
 
   protected ################### PROTECTED ###############
