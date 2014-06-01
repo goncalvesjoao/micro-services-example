@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
   def index
-    remote_call = Post.find(:all)
+    remote_call = Post.find(:all, page: params[:page])
 
     @service_down = remote_call.error?
 

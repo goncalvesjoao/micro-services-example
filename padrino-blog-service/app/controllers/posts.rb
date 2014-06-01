@@ -20,9 +20,9 @@ PadrinoBlogService::App.controllers :posts do
   # end
 
   get :index do
-    @posts = Post.all
+    @posts = Post.page(params[:page]).per(5)
 
-    json @posts
+    json({ posts: @posts, current_page: @posts.current_page, total_pages: @posts.total_pages, limit_value: @posts.limit_value })
   end
 
   get :show do
