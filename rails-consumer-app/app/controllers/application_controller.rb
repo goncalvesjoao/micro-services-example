@@ -1,22 +1,23 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
+
   protect_from_forgery with: :exception
 
-  protected ################# PROTECTED ################
+  protected ################ PROTECTED ##################
 
-  def set_flash_message(operation, operation_result, now = false)
-    if operation_result.nil?
-      message = 'Sorry, the server has returned an error!'
-    elsif !operation_result
-      message = "Failed to #{operation} object"
-    end
+  def resource_name
+    @resource_name ||= controller_name.singularize
+  end
 
-    if now
-      flash.now[:error] = message
-    else
-      flash[:error] = message
-    end
+  def resource_class
+    @resource_class ||= "#{resource_name.camelize}".constantize
+  end
+
+  def set_resource(object)
+    instance_variable_set("@#{resource_name}", object)
+  end
+
+  def get_resource
+    instance_variable_get("@#{resource_name}")
   end
 
 end
