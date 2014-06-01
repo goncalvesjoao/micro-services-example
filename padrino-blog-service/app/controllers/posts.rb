@@ -36,7 +36,7 @@ PadrinoBlogService::App.controllers :posts do
 
     status(@post.save ? 200 : 422)
 
-    json @post.errors
+    json({ errors: @post.errors })
   end
 
 end
