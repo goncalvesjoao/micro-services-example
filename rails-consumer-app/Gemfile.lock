@@ -141,7 +141,7 @@ GEM
       actionpack (~> 4.0)
       activemodel (~> 4.0)
     slop (3.5.0)
-    smooth_operator (1.21.1)
+    smooth_operator (1.21.3)
       faraday (~> 0.8)
       json (~> 1.8)
       typhoeus (~> 0.6)

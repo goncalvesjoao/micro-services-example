@@ -28,7 +28,7 @@ PadrinoBlogService::App.controllers :posts do
   get ':id' do
     @post = Post.find(params[:id])
 
-    json @post
+    @post.to_json(methods: [:comments])
   end
 
   post '' do

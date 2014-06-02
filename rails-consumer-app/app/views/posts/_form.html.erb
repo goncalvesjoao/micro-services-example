@@ -3,8 +3,10 @@
 <%= f.input :body %>
 <%= f.input :publishing_date %>
 
-<%= f.simple_fields_for :comments do |comment| %>
-  <%= comment.input :body %>
-<% end %>
+<div id="comments">
+  <%= f.simple_fields_for :comments do |comment| %>
+    <%= comment.input :body %>
+  <% end %>
 
-<%= link_to_add_association 'add comment', f, :comments %>
+  <%= link_to_add_association 'add comment', f, :comments %>
+</div>
