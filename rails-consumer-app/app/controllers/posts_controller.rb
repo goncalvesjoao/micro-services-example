@@ -31,7 +31,11 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.new(id: params[:id])
 
-    set_flash_message(:destroy, @post.destroy)
+    destroy_result = @post.destroy
+
+    unless destroy_result
+      flash[:error] = failed_flash_message(:destroy, destroy_result)
+    end
 
     redirect_to(posts_path)
   end
@@ -51,12 +55,14 @@ class PostsController < ApplicationController
   def create_or_update_post(error_view_name)
     @post = Post.new(params[:post])
 
+    @post.user_id = current_user.id
+
     save_result = @post.save
 
     if save_result
       redirect_to(posts_path)
     else
-      set_flash_message_now(:save, save_result)
+      flash.now[:error] = failed_flash_message(:save, save_result)
 
       render error_view_name
     end

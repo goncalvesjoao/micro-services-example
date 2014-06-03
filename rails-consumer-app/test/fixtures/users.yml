@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyString
+  blog_cookie: MyString
+  blog_auth_token: MyString
+
+two:
+  first_name: MyString
+  blog_cookie: MyString
+  blog_auth_token: MyString

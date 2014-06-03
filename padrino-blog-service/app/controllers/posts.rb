@@ -1,24 +1,5 @@
 PadrinoBlogService::App.controllers :posts do
 
-  # get :index, :map => '/foo/bar' do
-  #   session[:foo] = 'bar'
-  #   render 'index'
-  # end
-
-  # get :sample, :map => '/sample/url', :provides => [:any, :js] do
-  #   case content_type
-  #     when :js then ...
-  #     else ...
-  # end
-
-  # get :foo, :with => :id do
-  #   'Maps to url '/foo/#{params[:id]}''
-  # end
-
-  # get '/example' do
-  #   'Hello world!'
-  # end
-
   get :index do
     @posts = Post.page(params[:page]).per(5)
 
@@ -36,7 +17,7 @@ PadrinoBlogService::App.controllers :posts do
 
     status(@post.save ? 200 : 422)
 
-    json({ errors: @post.errors })
+    @post.to_json(methods: [:errors, :comments])
   end
 
   put ':id' do
@@ -44,15 +25,15 @@ PadrinoBlogService::App.controllers :posts do
 
     status(@post.update_attributes(params[:post]) ? 200 : 422)
 
-    json({ errors: @post.errors })
+    @post.to_json(methods: [:errors, :comments])
   end
 
   delete ':id' do
     @post = Post.find(params[:id])
 
-    status(@post.destroy ? 200 : 422)
+    status(@post.destroy ? 204 : 422)
 
-    json({ errors: @post.errors })
+    @post.to_json(methods: [:errors])
   end
 
 end

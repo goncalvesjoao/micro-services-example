@@ -6,6 +6,10 @@ module PadrinoBlogService
 
     enable :sessions
 
+    get '/csrf_token' do
+      session[:csrf]
+    end
+
     ##
     # Caching support.
     #

@@ -4,6 +4,6 @@ class Post < ActiveRecord::Base
 
   accepts_nested_attributes_for :comments
 
-  validates_presence_of :body
+  validates_presence_of :body, :user_id
 
 end

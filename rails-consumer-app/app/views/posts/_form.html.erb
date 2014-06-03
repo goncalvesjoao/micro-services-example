@@ -5,7 +5,7 @@
 
 <div id="comments">
   <%= f.simple_fields_for :comments do |comment| %>
-    <%= comment.input :body %>
+    <%= render "comment_fields", f: comment %>
   <% end %>
 
   <%= link_to_add_association 'add comment', f, :comments %>
