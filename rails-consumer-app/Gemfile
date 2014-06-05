@@ -18,9 +18,9 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'simple_form'
 gem 'bootstrap-sass'
-# gem 'smooth_operator'
+gem 'smooth_operator'
 gem 'cocoon', '1.2.6'
-gem 'smooth_operator', path: '../../smooth_operator'
+# gem 'smooth_operator', path: '../../smooth_operator'
 
 group :development do
   gem "pry"
