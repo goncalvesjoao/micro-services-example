@@ -1,12 +1,12 @@
 class SmoothResource < SmoothOperator::Rails
 
-  def self.headers
-    headers = super
+  options headers: :custom_headers
 
-    headers.merge({
+  def self.custom_headers
+    {
       cookie: current_user.blog_cookie,
       "X_CSRF_TOKEN" => current_user.blog_auth_token
-    })
+    }
   end
 
   # IF you don't want to add the user_id on the controller,

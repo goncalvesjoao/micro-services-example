@@ -1,5 +1,5 @@
 class Comment < SmoothOperator::Rails
 
-  schema({ body: :text })
+  schema body: :text
 
 end

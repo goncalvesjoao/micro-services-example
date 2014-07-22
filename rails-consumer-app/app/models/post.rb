@@ -1,16 +1,13 @@
 class Post < SmoothResource
 
-  self.server_name = "padrino-blog"
+  options rails_serialization: true, # this will generate comments_attributes = { '1' => { id: 1, body: 'comment body' } }
+          server_name: "padrino-blog",
+          endpoint: 'http://localhost:4040/'
 
-  self.rails_serialization = true # this will generate comments_attributes = { '1' => { id: 1, body: 'comment body' } }
-
-  self.endpoint = 'http://localhost:4040/'
-
-  schema({
+  schema \
     body: :text,
     title: :string,
     publishing_date: :datetime
-  })
 
   has_many :comments
 
